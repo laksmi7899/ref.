@@ -200,7 +200,6 @@
         .sh-5y { font-size: 13px; color: rgba(255,255,255,0.7); }
         .sh-5y strong { color: var(--accent-gold-light); }
         .sim-disclaimer { font-size: 11px; color: var(--text-sub); margin-bottom: 18px; }
-        .sim-cta { }
 
         /* STRUCTURE */
         .structure-section { padding: 70px 28px; background: #fff; }
@@ -499,7 +498,10 @@
             cursor: pointer; border: none; font-family: 'Pretendard', sans-serif;
             transition: all 0.2s; letter-spacing: -0.02em;
         }
-        .btn-submit:hover { background: var(--accent-gold-hover); transform: translateY(-2px); }
+        .btn-submit:disabled {
+            background: #555; cursor: not-allowed; opacity: 0.7;
+        }
+        .btn-submit:hover:not(:disabled) { background: var(--accent-gold-hover); transform: translateY(-2px); }
         .form-guarantee {
             margin-top: 14px; font-size: 12px; color: rgba(255,255,255,0.4);
             text-align: center; line-height: 1.6;
@@ -557,58 +559,30 @@
            MOBILE — 480px 이하
         ════════════════════════════════ */
         @media (max-width: 480px) {
-
-            /* ── FLOAT ── */
-            .floating-kakao {
-                bottom: 16px; right: 12px;
-                padding: 12px 18px; font-size: 13px;
-            }
-
-            /* ── URGENCY BAR ── */
+            .floating-kakao { bottom: 16px; right: 12px; padding: 12px 18px; font-size: 13px; }
             .urgency-bar { font-size: 12px; padding: 10px 16px; }
-
-            /* ── HERO ── */
             .hero { padding: 52px 20px 52px; }
             .hero h1 { font-size: 28px; }
             .hero-sub { font-size: 14px; margin-top: 18px; }
             .hero-tag { font-size: 11px; padding: 6px 14px; margin-bottom: 20px; }
-
-            /* Trust badges: 3열 유지 + 폰트 축소 */
             .trust-badges { margin-top: 28px; }
             .trust-badge { padding: 14px 6px; }
             .tb-val { font-size: 18px; }
             .tb-lbl { font-size: 10px; }
-
-            /* CTA 버튼 */
             .btn-primary { padding: 16px 20px; font-size: 15px; min-height: 56px; }
             .btn-kakao { padding: 15px 20px; font-size: 14px; min-height: 52px; }
             .hero-cta { margin-top: 28px; gap: 10px; }
             .hero-disclaimer { font-size: 11px; }
 
-            /* ── SECTION COMMON ── */
-            .pain-section,
-            .simulator-section,
-            .structure-section,
-            .bonus-section,
-            .defense-section,
-            .succession,
-            .hr-section,
-            .social-section,
-            .faq-section,
-            .roadmap-section { padding: 52px 20px; }
-
+            .pain-section, .simulator-section, .structure-section, .bonus-section, .defense-section,
+            .succession, .hr-section, .social-section, .faq-section, .roadmap-section { padding: 52px 20px; }
             .pillars-section { padding: 52px 20px; }
-
             .section-header { margin-bottom: 26px; }
             .section-header h2 { font-size: 21px; }
             .section-header p { font-size: 13px; }
             .pain-section h2 { font-size: 21px; }
-
-            /* ── PILLAR METRICS ── */
             .pm-item { min-width: 100px; }
             .pm-val { font-size: 16px; }
-
-            /* ── SIMULATOR ── */
             .sim-card { padding: 22px 18px; border-radius: 16px; }
             .slider-value { font-size: 24px; }
             .range-slider::-webkit-slider-thumb { width: 26px; height: 26px; }
@@ -618,78 +592,53 @@
             .sr-val { font-size: 15px; }
             .sh-val { font-size: 26px; }
             .sh-5y { font-size: 12px; }
-
-            /* ── STRUCTURE: compare-cards 세로 ── */
             .compare-cards { flex-direction: column; align-items: stretch; gap: 8px; }
             .cmp-card { min-width: 0; }
             .cmp-arrow { transform: rotate(90deg); font-size: 20px; text-align: center; }
-
-            /* ── ONESTOP GRID: 2열 유지 폰트 축소 ── */
             .os-item { padding: 14px 12px; border-radius: 12px; }
             .os-item h5 { font-size: 13px; }
             .os-item p { font-size: 11px; }
             .os-icon { font-size: 18px; margin-bottom: 6px; }
-
-            /* ── BONUS SECTION ── */
             .bonus-kpi-grid { gap: 10px; }
             .bkpi-val { font-size: 19px; }
             .bkpi-lbl { font-size: 11px; }
             .bonus-mechanism { padding: 18px 16px; }
             .bm-title { font-size: 13px; }
             .bm-step-text { font-size: 12px; }
-
-            /* 안전장치 배지 */
             .sb-item { padding: 12px 14px; gap: 10px; align-items: flex-start; }
             .sb-num { font-size: 12px; white-space: nowrap; }
             .sb-text { font-size: 12px; }
-
-            /* win-win table: 3열 그대로, 폰트 축소 + 여백 줄이기 */
             .win-win-table { margin-left: -20px; margin-right: -20px; border-radius: 0; }
-            .ww-th { padding: 10px 7px; font-size: 11px; }
-            .ww-td { padding: 10px 7px; font-size: 11px; }
-
-            /* growth-table 스크롤 */
+            .ww-th, .ww-td { padding: 10px 7px; font-size: 11px; }
             .table-scroll { margin: 0 -20px; padding: 0 20px; }
             .table-scroll .growth-table { min-width: 400px; }
-
-            /* bc-stats 3열 유지 + 폰트 축소 */
             .bc-stats { gap: 6px; }
             .bc-stat-val { font-size: 15px; }
             .bc-stat-lbl { font-size: 10px; }
             .bc-title { font-size: 16px; }
             .bc-quote { font-size: 12px; }
             .bonus-case { padding: 18px 16px; }
-
-            /* ── DEFENSE ── */
             .def-step { padding: 18px 16px; }
             .def-step h4 { font-size: 14px; }
             .def-step p { font-size: 12px; }
             .def-step-header { gap: 10px; margin-bottom: 10px; }
             .zero-badge { padding: 14px 16px; gap: 10px; }
             .zb-text { font-size: 13px; }
-
-            /* ── 4-LAYER ── */
             .succession { padding: 52px 20px; }
             .succession h2 { font-size: 21px; }
             .layer-box { padding: 16px; }
             .layer-title { font-size: 15px; }
             .layer-role { font-size: 11px; }
             .layer-effect { font-size: 11px; }
-            /* succession-stats: 3열 유지 + 폰트 */
             .ss-val { font-size: 16px; }
             .ss-lbl { font-size: 10px; }
             .succession-note { font-size: 12px; }
-
-            /* ── HR SECTION ── */
             .hr-item { padding: 18px 16px; gap: 12px; }
             .hr-item h4 { font-size: 14px; }
             .hr-item p { font-size: 12px; }
             .hr-badge { font-size: 11px; padding: 5px 10px; }
             .hr-num { width: 32px; height: 32px; font-size: 14px; }
-
-            /* ── CASE STUDY ── */
             .case-card { padding: 20px 16px; border-radius: 14px; }
-            /* case-header: 가로 → 세로 */
             .case-header { flex-direction: column; gap: 8px; align-items: flex-start; }
             .case-save { font-size: 13px; align-self: flex-start; }
             .case-who { font-size: 13px; }
@@ -697,56 +646,34 @@
             .case-quote { font-size: 12px; }
             .review-item { padding: 16px; }
             .review-item p { font-size: 12px; }
-
-            /* ── MID CTA ── */
             .mid-cta, .mid-cta-dark { padding: 32px 20px; }
             .mid-cta p, .mid-cta-dark p { font-size: 16px; margin-bottom: 16px; }
-
-            /* ── ROADMAP ── */
             .roadmap-steps::before { left: 19px; }
             .rm-dot { width: 38px; height: 38px; font-size: 13px; }
             .rm-content { padding-top: 7px; }
             .rm-title { font-size: 15px; }
             .rm-items { font-size: 12px; }
             .rm-step { gap: 16px; padding-bottom: 26px; }
-
-            /* ── FAQ ── */
             .faq-item { border-radius: 12px; }
-            .faq-q {
-                padding: 16px 18px;
-                min-height: 54px; /* 터치 타깃 */
-            }
+            .faq-q { padding: 16px 18px; min-height: 54px; }
             .faq-q-text { font-size: 13px; }
             .faq-a { font-size: 12px; padding: 12px 18px 16px; }
-
-            /* ── FORM ── */
             .form-container { padding: 52px 20px; }
             .form-card { padding: 26px 18px; border-radius: 20px; }
             .form-header h2 { font-size: 20px; }
             .form-header p { font-size: 12px; }
             .form-group label { font-size: 12px; }
-            .form-group input, .form-group select {
-                padding: 14px 14px;
-                font-size: 16px; /* iOS 줌 방지 */
-            }
+            .form-group input, .form-group select { padding: 14px 14px; font-size: 16px; }
             .btn-submit { padding: 17px; font-size: 15px; min-height: 56px; }
             .form-guarantee { font-size: 11px; }
-
-            /* ── COST LIST ── */
             .cost-list { grid-template-columns: 1fr; }
             .cost-list li { font-size: 12px; }
-
-            /* ── FOOTER ── */
             .footer { padding: 32px 20px; }
             .footer-logo { font-size: 15px; }
             .footer p { font-size: 11px; }
-
-            /* ── LEGAL NOTE ── */
             .legal-note { padding: 14px 16px; }
             .legal-note p { font-size: 11px; }
         }
-
-        /* ── 375px 이하 초소형 ── */
         @media (max-width: 375px) {
             .hero { padding: 40px 16px 44px; }
             .hero h1 { font-size: 24px; }
@@ -755,18 +682,8 @@
             .bkpi-val { font-size: 17px; }
             .ww-th, .ww-td { padding: 8px 5px; font-size: 10px; }
             .bc-stat-val { font-size: 13px; }
-
-            .pain-section,
-            .simulator-section,
-            .structure-section,
-            .bonus-section,
-            .defense-section,
-            .succession,
-            .hr-section,
-            .social-section,
-            .faq-section,
-            .roadmap-section,
-            .pillars-section,
+            .pain-section, .simulator-section, .structure-section, .bonus-section, .defense-section,
+            .succession, .hr-section, .social-section, .faq-section, .roadmap-section, .pillars-section,
             .form-container { padding: 44px 16px; }
         }
     </style>
@@ -779,13 +696,11 @@
 
 <div class="container">
 
-    <!-- URGENCY -->
     <div class="urgency-bar">
         <span class="urgency-dot"></span>
         현재 <span>3명</span>의 원장님이 이 페이지를 보고 있습니다 · 3월 무료 진단 선착순 <span>5팀</span>
     </div>
 
-    <!-- HERO -->
     <section class="hero">
         <div class="hero-tag">2026 HOSPITAL MANAGEMENT TOTAL SOLUTION</div>
         <h1>
@@ -824,7 +739,6 @@
         <p class="hero-disclaimer">※ 초기 진단 및 시뮬레이션 보고서 무료 제공 | 통상 300만 원 상당</p>
     </section>
 
-    <!-- PAIN -->
     <section class="pain-section fade-up">
         <h2>지금 이 순간에도<br>돈이 새고 있습니다</h2>
         <p class="sub-copy">원장님이 놓치고 있는 4가지 구조적 손실, 합산하면 연간 <strong>최소 5억 원 이상</strong>입니다.</p>
@@ -860,7 +774,6 @@
         </div>
     </section>
 
-    <!-- TWO PILLARS -->
     <section class="pillars-section fade-up">
         <div class="section-header">
             <span class="section-tag">USP 2-PILLAR SOLUTION</span>
@@ -901,7 +814,6 @@
         </div>
     </section>
 
-    <!-- TAX SIMULATOR -->
     <section class="simulator-section fade-up">
         <div class="section-header">
             <span class="section-tag">TAX SIMULATOR</span>
@@ -940,7 +852,6 @@
         </div>
     </section>
 
-    <!-- STRUCTURE -->
     <section class="structure-section fade-up">
         <div class="section-header">
             <span class="section-tag">WHY USP</span>
@@ -997,7 +908,6 @@
         </div>
     </section>
 
-    <!-- PERFORMANCE BONUS SYSTEM — NEW SECTION -->
     <section class="bonus-section fade-up">
         <div class="section-header">
             <span class="section-tag">HR PROFIT ENGINE</span>
@@ -1005,7 +915,6 @@
             <p>NET 계약이 유지되는 한, 병원에는 매년 최소 5.4억 원의 숨은 손실이 발생합니다.</p>
         </div>
 
-        <!-- 4 PROBLEMS -->
         <div class="bonus-problem">
             <h4>⚠ 지금 NET 계약을 유지하고 있다면</h4>
             <div class="bonus-problem-list">
@@ -1028,7 +937,6 @@
             </div>
         </div>
 
-        <!-- SOLUTION KPIs -->
         <div class="bonus-solution-title">✅ USP 성과급 시스템 도입 효과 (실제 적용 사례)</div>
         <div class="bonus-kpi-grid">
             <div class="bonus-kpi">
@@ -1049,7 +957,6 @@
             </div>
         </div>
 
-        <!-- MECHANISM -->
         <div class="bonus-mechanism">
             <div class="bm-title">📐 성과급 산출 구조 (투명한 3단계)</div>
             <div class="bm-steps">
@@ -1068,7 +975,6 @@
             </div>
         </div>
 
-        <!-- SAFETY BADGES -->
         <div class="safety-badges">
             <div class="sb-item">
                 <div class="sb-num">🛡 1차</div>
@@ -1084,7 +990,6 @@
             </div>
         </div>
 
-        <!-- WIN-WIN TABLE -->
         <div class="win-win-table">
             <div class="ww-header">
                 <div class="ww-th">구분</div>
@@ -1118,7 +1023,6 @@
             </div>
         </div>
 
-        <!-- GROWTH SCENARIO -->
         <div style="margin-bottom: 24px;">
             <div class="bm-title" style="color:#fff; margin-bottom:14px;">📈 성장 시나리오별 병원 ROI</div>
             <div class="table-scroll">
@@ -1144,7 +1048,6 @@
             <p style="font-size:12px;color:rgba(255,255,255,0.4);margin-top:10px;">※ 안과 병원 실제 적용 데이터 기반. 2026년 1월 실적 전년 동월 대비 +25.3% 달성</p>
         </div>
 
-        <!-- CASE -->
         <div class="bonus-case">
             <div class="bc-label">CASE STUDY — 천안 K안과 (2026년 3월)</div>
             <div class="bc-title">성과급 시스템 도입 후<br>인건비율 24.3% → 22.2%</div>
@@ -1170,13 +1073,11 @@
         </div>
     </section>
 
-    <!-- MID CTA -->
     <div class="mid-cta fade-up">
         <p>성과급 + 절세 + 승계,<br>지금 동시에 설계하세요 →</p>
         <a href="#apply" class="btn-primary" style="max-width:400px;display:block;margin:0 auto;">무료 병원 경영 진단 신청</a>
     </div>
 
-    <!-- DEFENSE -->
     <section class="defense-section fade-up">
         <div class="section-header">
             <span class="section-tag">DEFENSE PLAN</span>
@@ -1232,7 +1133,6 @@
         </div>
     </section>
 
-    <!-- 4-LAYER -->
     <section class="succession fade-up">
         <span class="section-tag">4-LAYER STRUCTURE</span>
         <h2>자녀에게 100억을 물려줄 때,<br>증여세를 내지 않아도 되는<br>구조가 있습니다</h2>
@@ -1282,7 +1182,6 @@
         <p class="succession-note">자녀가 미성년자여도 가능합니다.<br><strong>(상법 제3조: 미성년자의 법인 주주권 인정, 법정대리인 동의 시)</strong><br>USP 적용 케이스 중 자녀 최소 연령 만 9세.</p>
     </section>
 
-    <!-- HR SECTION -->
     <section class="hr-section fade-up">
         <div class="section-header">
             <span class="section-tag">HR COST SOLUTION</span>
@@ -1317,7 +1216,6 @@
         </div>
     </section>
 
-    <!-- CASE STUDIES -->
     <section class="social-section fade-up">
         <div class="section-header">
             <span class="section-tag">CASE STUDY</span>
@@ -1407,7 +1305,6 @@
         <a href="#apply" class="btn-primary" style="max-width:400px;display:block;margin:0 auto;">무료 절세 진단 신청</a>
     </div>
 
-    <!-- ROADMAP -->
     <section class="roadmap-section fade-up">
         <div class="section-header">
             <span class="section-tag">12-MONTH ROADMAP</span>
@@ -1450,7 +1347,6 @@
         </div>
     </section>
 
-    <!-- FAQ -->
     <section class="faq-section fade-up">
         <div class="section-header">
             <span class="section-tag">FAQ</span>
@@ -1516,7 +1412,6 @@
         </div>
     </section>
 
-    <!-- FORM -->
     <section class="form-container" id="apply">
         <div class="form-card">
             <div class="form-badge">
@@ -1543,6 +1438,7 @@
                 <label>병원 주소</label>
                 <input type="text" id="address" required placeholder="시/군/구 단위까지만 입력해 주셔도 됩니다 (예: 서울시 강남구)">
             </div>
+            
             <div class="form-group">
                 <label>진료과목</label>
                 <select id="dept">
@@ -1593,7 +1489,6 @@
         </div>
     </section>
 
-    <!-- FOOTER -->
     <footer class="footer">
         <div class="footer-logo">USP COMPANY</div>
         <p>
@@ -1606,9 +1501,7 @@
         </p>
     </footer>
 
-</div><!-- /container -->
-
-<script>
+</div><script>
     // FLOATING KAKAO
     window.addEventListener('scroll', () => {
         const el = document.getElementById('floatingKakao');
@@ -1653,10 +1546,8 @@
         if (!wasOpen) item.classList.add('open');
     }
 
-    
-    // FORM
+    // FORM 완벽 전송 및 이동 로직
     function submitForm() {
-        // 1. 입력된 데이터 가져오기
         const name = document.getElementById('name').value.trim();
         const phone = document.getElementById('phone').value.trim();
         const hospital = document.getElementById('hospital').value.trim();
@@ -1665,23 +1556,23 @@
         const revenue = document.getElementById('revenue').value;
         const interest = document.getElementById('interest').value;
 
-        // 2. 논리적 검증: 하나라도 비어있으면 경고 메시지 출력 후 중단
+        // 논리적 검증: 하나라도 비어있으면 경고 메시지 출력
         if (!name || !phone || !hospital || !address || !dept || !revenue || !interest) {
             alert('모든 항목을 입력해 주세요.');
             return;
         }
-
-        // 3. 버튼 중복 클릭 방지
+        
+        // 제출 버튼 비활성화 (중복 클릭 방지)
         const btn = document.querySelector('.btn-submit');
         if (btn) {
             btn.disabled = true;
-            btn.innerText = '데이터 전송 중...';
+            btn.innerText = '전송 중입니다...';
         }
 
-        // 4. 구글 앱스 스크립트 URL (기존에 사용하시던 웹앱 URL)
+        // 구글 앱스 스크립트 연결 주소 (기존 사용하시던 웹앱 URL)
         const scriptURL = 'https://script.google.com/macros/s/AKfycbx8JPtLlW5XI-OVdRZDt2tsBuD-kefttk33ICTiIl5H7a6l5J6st9QHgI8Lgq0dS8Ht3Q/exec';
 
-        // 5. 데이터 전송 및 페이지 이동 로직
+        // 데이터를 묶어서 fetch로 전송
         fetch(scriptURL, {
             method: 'POST',
             mode: 'no-cors',
@@ -1697,25 +1588,18 @@
             })
         })
         .then(() => {
-            // 전송 완료 안내창을 띄우고
             alert(`신청이 완료되었습니다, ${name} 원장님!\n\n영업일 기준 24시간 내 담당자가 연락드리겠습니다.`);
-            // 확인 버튼을 누르면 즉시 success.html로 이동합니다.
+            // 데이터 전송 완료 후 success 페이지로 즉시 이동
             window.location.href = 'success.html';
         })
         .catch(error => {
-            // 실패 시 로직
-            alert('전송 중 오류가 발생했습니다. 다시 시도해 주세요.');
+            alert('네트워크 오류로 전송에 실패했습니다. 다시 시도해 주세요.');
             if (btn) {
                 btn.disabled = false;
                 btn.innerText = '무료 경영 진단 신청하기 →';
             }
         });
     }
-        
-        // 성공 시 메시지 (추후 이 부분에 구글 시트 전송 로직이 연결됩니다)
-        alert(`신청이 완료되었습니다, ${name} 원장님!\n\n영업일 기준 24시간 내 담당자가 연락드리겠습니다.\n\n문의: 1533-6441`);
-    }
-    
 
     // REMAIN COUNTDOWN
     let remain = 3;
