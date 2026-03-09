@@ -503,7 +503,7 @@
     <div class="download-section">
     <span class="section-label">FREE REPORT & TOOL</span>
 
-    <a href="USP_Tax_Report.pdf" class="dl-card" style="margin-bottom: 12px;" target="_blank">
+    <a href="https://raw.githubusercontent.com/laksmi7899/ref/main/USP_Tax_Report.pdf" class="dl-card" style="margin-bottom: 12px;" target="_blank">
         <div class="dl-icon" style="background: #ff3b30;">📄</div> <div class="dl-text">
             <span>2026 병의원 절세 시크릿 리포트</span>
             <small>클릭 시 PDF가 새 창에서 열립니다</small>
@@ -511,7 +511,7 @@
         <div class="dl-arrow">→</div>
     </a>
 
-    <a href="USP_Salary_Guide.xlsx" class="dl-card" download>
+    <a href="https://raw.githubusercontent.com/laksmi7899/ref/main/USP_Salary_Guide.xlsx" class="dl-card" download>
         <div class="dl-icon" style="background: #34c759;">📊</div> <div class="dl-text">
             <span>페이닥터 급여구조 최적화 가이드</span>
             <small>엑셀 파일을 다운로드하여 직접 입력해 보세요</small>
@@ -808,4 +808,5 @@
         const overlay = document.getElementById('privacyOverlay');
         overlay.classList.remove('active');
         document.body.styl
+
 
