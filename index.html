@@ -1656,22 +1656,61 @@
     
     // FORM
     function submitForm() {
-        // 기존 항목
+        // 1. 입력된 데이터 가져오기
         const name = document.getElementById('name').value.trim();
         const phone = document.getElementById('phone').value.trim();
+        const hospital = document.getElementById('hospital').value.trim();
+        const address = document.getElementById('address').value.trim();
         const dept = document.getElementById('dept').value;
         const revenue = document.getElementById('revenue').value;
         const interest = document.getElementById('interest').value;
-        
-        // 새로 추가된 항목
-        const hospital = document.getElementById('hospital').value.trim();
-        const address = document.getElementById('address').value.trim();
 
-        // 논리적 검증: 하나라도 비어있으면 경고 메시지 출력
+        // 2. 논리적 검증: 하나라도 비어있으면 경고 메시지 출력 후 중단
         if (!name || !phone || !hospital || !address || !dept || !revenue || !interest) {
             alert('모든 항목을 입력해 주세요.');
             return;
         }
+
+        // 3. 버튼 중복 클릭 방지
+        const btn = document.querySelector('.btn-submit');
+        if (btn) {
+            btn.disabled = true;
+            btn.innerText = '데이터 전송 중...';
+        }
+
+        // 4. 구글 앱스 스크립트 URL (기존에 사용하시던 웹앱 URL)
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbx8JPtLlW5XI-OVdRZDt2tsBuD-kefttk33ICTiIl5H7a6l5J6st9QHgI8Lgq0dS8Ht3Q/exec';
+
+        // 5. 데이터 전송 및 페이지 이동 로직
+        fetch(scriptURL, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: new URLSearchParams({
+                name: name,
+                phone: phone,
+                hospital: hospital,
+                address: address,
+                dept: dept,
+                revenue: revenue,
+                interest: interest
+            })
+        })
+        .then(() => {
+            // 전송 완료 안내창을 띄우고
+            alert(`신청이 완료되었습니다, ${name} 원장님!\n\n영업일 기준 24시간 내 담당자가 연락드리겠습니다.`);
+            // 확인 버튼을 누르면 즉시 success.html로 이동합니다.
+            window.location.href = 'success.html';
+        })
+        .catch(error => {
+            // 실패 시 로직
+            alert('전송 중 오류가 발생했습니다. 다시 시도해 주세요.');
+            if (btn) {
+                btn.disabled = false;
+                btn.innerText = '무료 경영 진단 신청하기 →';
+            }
+        });
+    }
         
         // 성공 시 메시지 (추후 이 부분에 구글 시트 전송 로직이 연결됩니다)
         alert(`신청이 완료되었습니다, ${name} 원장님!\n\n영업일 기준 24시간 내 담당자가 연락드리겠습니다.\n\n문의: 1533-6441`);
