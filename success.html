@@ -136,9 +136,6 @@
             text-transform: uppercase; margin-bottom: 16px;
             display: block;
         }
-        .dl-cards {
-            display: flex; flex-direction: column; gap: 14px;
-        }
         .dl-card {
             background: var(--bg-dark);
             border-radius: 22px;
@@ -148,6 +145,7 @@
             transition: all 0.25s;
             position: relative; overflow: hidden;
         }
+        .dl-card + .dl-card { margin-top: 12px; }
         .dl-card::before {
             content: '';
             position: absolute; top: -40px; right: -40px;
@@ -157,7 +155,7 @@
         .dl-card:hover { transform: translateY(-3px); box-shadow: 0 12px 35px rgba(0,0,0,0.15); }
         .dl-icon {
             width: 52px; height: 52px; flex-shrink: 0;
-            background: var(--accent-gold); border-radius: 14px;
+            border-radius: 14px;
             display: flex; align-items: center; justify-content: center;
             font-size: 24px;
         }
@@ -174,7 +172,7 @@
         }
         .dl-note {
             font-size: 12px; color: var(--text-sub);
-            text-align: center; margin-top: 12px; line-height: 1.6;
+            text-align: center; margin-top: 14px; line-height: 1.6;
         }
 
         /* ——— 링크 섹션 공통 ——— */
@@ -213,7 +211,7 @@
             font-size: 11px; color: var(--text-sub);
         }
 
-        /* 카카오 카드 (와이드) */
+        /* 카카오 카드 */
         .kakao-card {
             background: var(--kakao-yellow);
             border: none;
@@ -240,21 +238,6 @@
         .kakao-card .kc-arrow {
             font-size: 18px; color: rgba(60,30,30,0.4); flex-shrink: 0;
         }
-
-        /* ——— 재방문 유도 배너 ——— */
-        .revisit-banner {
-            margin: 0 25px 35px;
-            background: var(--bg-light);
-            border: 1px solid var(--border);
-            border-radius: 18px; padding: 22px;
-            display: flex; align-items: center; gap: 14px;
-            text-decoration: none; transition: all 0.2s;
-        }
-        .revisit-banner:hover { border-color: var(--accent-gold); }
-        .revisit-banner .rb-icon { font-size: 28px; flex-shrink: 0; }
-        .revisit-banner .rb-text h4 { font-size: 14px; font-weight: 800; color: var(--text-main); margin-bottom: 3px; }
-        .revisit-banner .rb-text p { font-size: 12px; color: var(--text-sub); }
-        .revisit-banner .rb-arrow { font-size: 16px; color: var(--accent-gold); margin-left: auto; flex-shrink: 0; }
 
         footer {
             padding: 40px 20px 30px;
@@ -499,35 +482,37 @@
     </div>
 
     <!-- 리포트 다운로드 -->
-    
     <div class="download-section">
-    <span class="section-label">FREE REPORT & TOOL</span>
+        <span class="section-label">FREE REPORT &amp; TOOL</span>
 
-    <a href="https://raw.githubusercontent.com/laksmi7899/ref/main/USP_Tax_Report.pdf" class="dl-card" style="margin-bottom: 12px;" target="_blank">
-        <div class="dl-icon" style="background: #ff3b30;">📄</div> <div class="dl-text">
-            <span>2026 병의원 절세 시크릿 리포트</span>
-            <small>클릭 시 PDF가 새 창에서 열립니다</small>
-        </div>
-        <div class="dl-arrow">→</div>
-    </a>
+        <a href="https://raw.githubusercontent.com/laksmi7899/ref/main/USP_Tax_Report.pdf"
+           class="dl-card" target="_blank" rel="noopener">
+            <div class="dl-icon" style="background:#ff3b30;">📄</div>
+            <div class="dl-text">
+                <span>2026 병의원 절세 시크릿 리포트</span>
+                <small>클릭 시 PDF가 새 창에서 열립니다</small>
+            </div>
+            <div class="dl-arrow">→</div>
+        </a>
 
-    <a href="https://raw.githubusercontent.com/laksmi7899/ref/main/USP_Salary_Guide.xlsx" class="dl-card" download>
-        <div class="dl-icon" style="background: #34c759;">📊</div> <div class="dl-text">
-            <span>페이닥터 급여구조 최적화 가이드</span>
-            <small>엑셀 파일을 다운로드하여 직접 입력해 보세요</small>
-        </div>
-        <div class="dl-arrow">↓</div>
-    </a>
+        <a href="https://raw.githubusercontent.com/laksmi7899/ref/main/USP_Salary_Guide.xlsx"
+           class="dl-card" download="USP_Salary_Guide.xlsx">
+            <div class="dl-icon" style="background:#34c759;">📊</div>
+            <div class="dl-text">
+                <span>페이닥터 급여구조 최적화 가이드</span>
+                <small>엑셀 파일을 다운로드하여 직접 입력해 보세요</small>
+            </div>
+            <div class="dl-arrow">↓</div>
+        </a>
 
-    <p class="dl-note">다운로드가 되지 않을 경우 아래 카카오 채널로 문의주세요.</p>
-</div>
-    
+        <p class="dl-note">다운로드가 되지 않을 경우 아래 카카오 채널로 문의주세요.</p>
+    </div>
 
     <!-- 유튜브 채널 -->
     <div class="links-section bg-light">
         <span class="section-label">▶ Visual Insight — YouTube</span>
         <div class="link-grid">
-            <a href="https://www.youtube.com/@LNK1472" target="_blank" class="link-card">
+            <a href="https://www.youtube.com/@LNK1472" target="_blank" rel="noopener" class="link-card">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="44" height="44" style="margin-bottom:12px;display:block;">
                     <rect width="48" height="48" rx="12" fill="#FF0000"/>
                     <path d="M38.5 16.5s-.4-2.6-1.5-3.7c-1.4-1.5-3-.5-3.7-.1C30.5 14 24 14 24 14s-6.5 0-9.3 1.7c-.7.4-2.3-.4-3.7.1-1.1 1.1-1.5 3.7-1.5 3.7S9 19.3 9 22.1v2.6c0 2.8.5 5.6.5 5.6s.4 2.6 1.5 3.7c1.4 1.5 3.3 1.4 4.1 1.6C17.5 36 24 36 24 36s6.5 0 9.3-1.7c.7-.4 2.3.4 3.7-.1 1.1-1.1 1.5-3.7 1.5-3.7s.5-2.8.5-5.6v-2.6c0-2.8-.5-5.6-.5-5.6z" fill="#FF0000"/>
@@ -536,7 +521,7 @@
                 <div class="lc-name">절세가인</div>
                 <div class="lc-sub">유튜브 채널</div>
             </a>
-            <a href="https://www.youtube.com/@USPCOMPANY_1" target="_blank" class="link-card">
+            <a href="https://www.youtube.com/@USPCOMPANY_1" target="_blank" rel="noopener" class="link-card">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="44" height="44" style="margin-bottom:12px;display:block;">
                     <rect width="48" height="48" rx="12" fill="#FF0000"/>
                     <path d="M38.5 16.5s-.4-2.6-1.5-3.7c-1.4-1.5-3-.5-3.7-.1C30.5 14 24 14 24 14s-6.5 0-9.3 1.7c-.7.4-2.3-.4-3.7.1-1.1 1.1-1.5 3.7-1.5 3.7S9 19.3 9 22.1v2.6c0 2.8.5 5.6.5 5.6s.4 2.6 1.5 3.7c1.4 1.5 3.3 1.4 4.1 1.6C17.5 36 24 36 24 36s6.5 0 9.3-1.7c.7-.4 2.3.4 3.7-.1 1.1-1.1 1.5-3.7 1.5-3.7s.5-2.8.5-5.6v-2.6c0-2.8-.5-5.6-.5-5.6z" fill="#FF0000"/>
@@ -552,13 +537,13 @@
     <div class="links-section bg-white">
         <span class="section-label">✏️ Deep Column — Naver Blog</span>
         <div class="link-grid">
-            <a href="https://blog.naver.com/kosan0811" target="_blank" class="link-card">
-                <div class="link-card-icon-wrap" style="background:rgba(3,199,90,0.08); color:#03C75A; font-size:18px; font-weight:900;">N</div>
+            <a href="https://blog.naver.com/kosan0811" target="_blank" rel="noopener" class="link-card">
+                <div class="link-card-icon-wrap" style="background:rgba(3,199,90,0.08);color:#03C75A;font-size:18px;font-weight:900;">N</div>
                 <div class="lc-name">코스메스</div>
                 <div class="lc-sub">네이버 블로그</div>
             </a>
-            <a href="https://blog.naver.com/airfn38" target="_blank" class="link-card">
-                <div class="link-card-icon-wrap" style="background:rgba(3,199,90,0.08); color:#03C75A; font-size:18px; font-weight:900;">N</div>
+            <a href="https://blog.naver.com/airfn38" target="_blank" rel="noopener" class="link-card">
+                <div class="link-card-icon-wrap" style="background:rgba(3,199,90,0.08);color:#03C75A;font-size:18px;font-weight:900;">N</div>
                 <div class="lc-name">유에스피</div>
                 <div class="lc-sub">네이버 블로그</div>
             </a>
@@ -568,7 +553,7 @@
     <!-- 카카오 채널 -->
     <div class="links-section bg-light">
         <span class="section-label">💬 Direct Contact — Kakao</span>
-        <a href="http://pf.kakao.com/_SxdxfxcG" target="_blank" class="kakao-card">
+        <a href="http://pf.kakao.com/_SxdxfxcG" target="_blank" rel="noopener" class="kakao-card">
             <div class="kakao-icon-wrap">💬</div>
             <div class="kc-text">
                 <span class="kc-name">유에스피 카톡 채널</span>
@@ -576,7 +561,7 @@
             </div>
             <span class="kc-arrow">→</span>
         </a>
-        <a href="http://pf.kakao.com/_xoxnxoxeG" target="_blank" class="kakao-card">
+        <a href="http://pf.kakao.com/_xoxnxoxeG" target="_blank" rel="noopener" class="kakao-card">
             <div class="kakao-icon-wrap">💬</div>
             <div class="kc-text">
                 <span class="kc-name">코스메스 카톡 채널</span>
@@ -588,10 +573,9 @@
 
     <footer>
         <p><strong>USP COMPANY</strong></p>
-        <p>010-2289-4931 &nbsp;|&nbsp; <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f998908b9f97cac1b98c8a899a969489989780d79a96d7928b">[email&#160;protected]</a></p>
-        <p><a href="http://www.uspcompany.co.kr" target="_blank">www.uspcompany.co.kr</a></p>
+        <p>010-2289-4931 &nbsp;|&nbsp; usp@uspcompany.co.kr</p>
+        <p><a href="http://www.uspcompany.co.kr" target="_blank" rel="noopener">www.uspcompany.co.kr</a></p>
         <p style="margin-top:10px;">
-            <!-- 개인정보처리방침 링크: 모달 트리거 -->
             <a href="#" onclick="openPrivacyModal(event)">개인정보처리방침</a>
         </p>
         <p>© 2026 USP COMPANY. All Rights Reserved.</p>
@@ -624,22 +608,10 @@
                 <h3>개인정보의 처리 목적</h3>
                 <p>회사는 다음의 목적을 위하여 개인정보를 처리합니다. 처리하고 있는 개인정보는 다음의 목적 이외의 용도로는 이용되지 않으며, 이용 목적이 변경되는 경우에는 「개인정보 보호법」 제18조에 따라 별도의 동의를 받는 등 필요한 조치를 이행할 예정입니다.</p>
                 <table class="privacy-table">
-                    <tr>
-                        <th>처리 목적</th>
-                        <th>상세 내용</th>
-                    </tr>
-                    <tr>
-                        <td>서비스 제공 및 상담</td>
-                        <td>무료 절세 진단 상담 신청 접수, 맞춤형 컨설팅 서비스 제공, 상담 일정 조율 및 결과 전달</td>
-                    </tr>
-                    <tr>
-                        <td>고객 관리</td>
-                        <td>고객 식별 및 본인 확인, 고객 문의 응대, 서비스 개선 및 만족도 조사</td>
-                    </tr>
-                    <tr>
-                        <td>마케팅 및 홍보</td>
-                        <td>신규 서비스 및 이벤트 안내 (별도 동의 시에 한함)</td>
-                    </tr>
+                    <tr><th>처리 목적</th><th>상세 내용</th></tr>
+                    <tr><td>서비스 제공 및 상담</td><td>무료 절세 진단 상담 신청 접수, 맞춤형 컨설팅 서비스 제공, 상담 일정 조율 및 결과 전달</td></tr>
+                    <tr><td>고객 관리</td><td>고객 식별 및 본인 확인, 고객 문의 응대, 서비스 개선 및 만족도 조사</td></tr>
+                    <tr><td>마케팅 및 홍보</td><td>신규 서비스 및 이벤트 안내 (별도 동의 시에 한함)</td></tr>
                 </table>
             </div>
 
@@ -649,26 +621,10 @@
                 <h3>처리하는 개인정보 항목</h3>
                 <p>회사는 다음의 개인정보 항목을 처리하고 있습니다.</p>
                 <table class="privacy-table">
-                    <tr>
-                        <th>구분</th>
-                        <th>수집 항목</th>
-                        <th>수집 방법</th>
-                    </tr>
-                    <tr>
-                        <td><strong>필수 항목</strong></td>
-                        <td>성함, 휴대폰 번호, 진료과목, 월 매출 구간, 병원 소재지(지역)</td>
-                        <td>홈페이지 상담 신청 폼</td>
-                    </tr>
-                    <tr>
-                        <td><strong>선택 항목</strong></td>
-                        <td>주요 고민 사항 (소득세 절감, MSO 구조 설계, 자녀 자산 이전, 인건비 절감)</td>
-                        <td>홈페이지 상담 신청 폼</td>
-                    </tr>
-                    <tr>
-                        <td><strong>자동 수집</strong></td>
-                        <td>접속 IP, 쿠키, 방문 일시, 서비스 이용 기록</td>
-                        <td>시스템 자동 수집</td>
-                    </tr>
+                    <tr><th>구분</th><th>수집 항목</th><th>수집 방법</th></tr>
+                    <tr><td><strong>필수 항목</strong></td><td>성함, 휴대폰 번호, 진료과목, 월 매출 구간, 병원 소재지(지역)</td><td>홈페이지 상담 신청 폼</td></tr>
+                    <tr><td><strong>선택 항목</strong></td><td>주요 고민 사항 (소득세 절감, MSO 구조 설계, 자녀 자산 이전, 인건비 절감)</td><td>홈페이지 상담 신청 폼</td></tr>
+                    <tr><td><strong>자동 수집</strong></td><td>접속 IP, 쿠키, 방문 일시, 서비스 이용 기록</td><td>시스템 자동 수집</td></tr>
                 </table>
             </div>
 
@@ -678,31 +634,11 @@
                 <h3>개인정보의 처리 및 보유 기간</h3>
                 <p>회사는 법령에 따른 개인정보 보유·이용기간 또는 정보주체로부터 개인정보를 수집 시에 동의받은 개인정보 보유·이용기간 내에서 개인정보를 처리·보유합니다.</p>
                 <table class="privacy-table">
-                    <tr>
-                        <th>보유 항목</th>
-                        <th>보유 기간</th>
-                        <th>근거</th>
-                    </tr>
-                    <tr>
-                        <td>상담 신청 정보</td>
-                        <td>수집일로부터 3년</td>
-                        <td>서비스 제공 및 분쟁 처리</td>
-                    </tr>
-                    <tr>
-                        <td>계약·청약 철회 기록</td>
-                        <td>5년</td>
-                        <td>전자상거래 등에서의 소비자 보호에 관한 법률</td>
-                    </tr>
-                    <tr>
-                        <td>소비자 불만·분쟁 처리 기록</td>
-                        <td>3년</td>
-                        <td>전자상거래 등에서의 소비자 보호에 관한 법률</td>
-                    </tr>
-                    <tr>
-                        <td>접속 로그</td>
-                        <td>3개월</td>
-                        <td>통신비밀보호법</td>
-                    </tr>
+                    <tr><th>보유 항목</th><th>보유 기간</th><th>근거</th></tr>
+                    <tr><td>상담 신청 정보</td><td>수집일로부터 3년</td><td>서비스 제공 및 분쟁 처리</td></tr>
+                    <tr><td>계약·청약 철회 기록</td><td>5년</td><td>전자상거래 등에서의 소비자 보호에 관한 법률</td></tr>
+                    <tr><td>소비자 불만·분쟁 처리 기록</td><td>3년</td><td>전자상거래 등에서의 소비자 보호에 관한 법률</td></tr>
+                    <tr><td>접속 로그</td><td>3개월</td><td>통신비밀보호법</td></tr>
                 </table>
             </div>
 
@@ -714,16 +650,8 @@
                 <p>① 정보주체가 사전에 동의한 경우<br>② 법령의 규정에 의거하거나, 수사 목적으로 법령에 정해진 절차와 방법에 따라 수사기관의 요구가 있는 경우</p>
                 <p>서비스 제공을 위해 아래와 같이 개인정보를 위탁하고 있습니다.</p>
                 <table class="privacy-table">
-                    <tr>
-                        <th>수탁 업체</th>
-                        <th>위탁 업무</th>
-                        <th>보유 기간</th>
-                    </tr>
-                    <tr>
-                        <td>Google LLC</td>
-                        <td>상담 신청 데이터 수집·저장 (Google Apps Script)</td>
-                        <td>위탁 계약 종료 시까지</td>
-                    </tr>
+                    <tr><th>수탁 업체</th><th>위탁 업무</th><th>보유 기간</th></tr>
+                    <tr><td>Google LLC</td><td>상담 신청 데이터 수집·저장 (Google Apps Script)</td><td>위탁 계약 종료 시까지</td></tr>
                 </table>
             </div>
 
@@ -761,10 +689,10 @@
                     <p class="contact-name">🛡️ 개인정보 보호책임자</p>
                     <p><strong>소속 / 직위:</strong> USP COMPANY / 팀장</p>
                     <p><strong>연락처:</strong> 010-2289-4931</p>
-                    <p><strong>이메일:</strong> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="24454d56424a171c64515754474b4954454a5d0a474b0a4f56">[email&#160;protected]</a></p>
+                    <p><strong>이메일:</strong> usp@uspcompany.co.kr</p>
                     <p><strong>홈페이지:</strong> www.uspcompany.co.kr</p>
                 </div>
-                <p style="margin-top: 14px;">정보주체께서는 회사의 서비스를 이용하시면서 발생한 모든 개인정보 보호 관련 문의, 불만 처리, 피해 구제 등에 관한 사항을 개인정보 보호책임자 및 담당부서로 문의하실 수 있습니다. 회사는 정보주체의 문의에 대해 지체 없이 답변 및 처리해드릴 것입니다.</p>
+                <p style="margin-top:14px;">정보주체께서는 회사의 서비스를 이용하시면서 발생한 모든 개인정보 보호 관련 문의, 불만 처리, 피해 구제 등에 관한 사항을 개인정보 보호책임자 및 담당부서로 문의하실 수 있습니다. 회사는 정보주체의 문의에 대해 지체 없이 답변 및 처리해드릴 것입니다.</p>
             </div>
 
             <!-- 제9조 -->
@@ -792,21 +720,37 @@
     </div>
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-    // ═══════════════════════════════════════
-    // 개인정보처리방침 모달 제어
-    // ═══════════════════════════════════════
+<script>
+    /* ═══════════════════════════════════════
+       개인정보처리방침 모달 제어
+    ═══════════════════════════════════════ */
     function openPrivacyModal(e) {
         if (e) e.preventDefault();
-        const overlay = document.getElementById('privacyOverlay');
+        var overlay = document.getElementById('privacyOverlay');
         overlay.classList.add('active');
         document.body.style.overflow = 'hidden';
         document.querySelector('.privacy-modal-body').scrollTop = 0;
     }
 
     function closePrivacyModal() {
-        const overlay = document.getElementById('privacyOverlay');
+        var overlay = document.getElementById('privacyOverlay');
         overlay.classList.remove('active');
-        document.body.styl
+        document.body.style.overflow = '';
+    }
 
+    function handleOverlayClick(e) {
+        if (e.target === document.getElementById('privacyOverlay')) {
+            closePrivacyModal();
+        }
+    }
 
+    /* ESC 키로 모달 닫기 */
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closePrivacyModal();
+        }
+    });
+</script>
+
+</body>
+</html>
