@@ -1644,17 +1644,26 @@
         if (!wasOpen) item.classList.add('open');
     }
 
-    // FORM
+    // 신청 폼 제출 함수 수정본
     function submitForm() {
         const name = document.getElementById('name').value.trim();
         const phone = document.getElementById('phone').value.trim();
         const dept = document.getElementById('dept').value;
         const revenue = document.getElementById('revenue').value;
-        if (!name || !phone || !dept || !revenue) {
+        const interest = document.getElementById('interest').value;
+
+        // 1. 유효성 검사: 필수 항목이 비어있는지 확인
+        if (!name || !phone || !dept || !revenue || !interest) {
             alert('모든 항목을 입력해 주세요.');
             return;
         }
-        alert(`신청이 완료되었습니다, ${name} 원장님!\n\n영업일 기준 24시간 내 담당자가 연락드리겠습니다.\n\n문의: 1533-6441`);
+
+        // 2. 알림 메시지 출력 (필요 없다면 이 줄을 삭제해도 됩니다)
+        alert(`신청이 완료되었습니다, ${name} 원장님!`);
+
+        // 3. 성공 페이지로 이동 (방법 B의 핵심 연결고리)
+        // GitHub 저장소에 success.html이라는 이름으로 파일이 있어야 합니다.
+        window.location.href = "success.html";
     }
 
     // REMAIN COUNTDOWN
