@@ -1644,27 +1644,57 @@
         if (!wasOpen) item.classList.add('open');
     }
 
+    
     // 신청 폼 제출 함수 수정본
     function submitForm() {
-        const name = document.getElementById('name').value.trim();
-        const phone = document.getElementById('phone').value.trim();
-        const dept = document.getElementById('dept').value;
-        const revenue = document.getElementById('revenue').value;
-        const interest = document.getElementById('interest').value;
+    const name = document.getElementById('name').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const dept = document.getElementById('dept').value;
+    const revenue = document.getElementById('revenue').value;
+    const interest = document.getElementById('interest').value;
 
-        // 1. 유효성 검사: 필수 항목이 비어있는지 확인
-        if (!name || !phone || !dept || !revenue || !interest) {
-            alert('모든 항목을 입력해 주세요.');
-            return;
-        }
-
-        // 2. 알림 메시지 출력 (필요 없다면 이 줄을 삭제해도 됩니다)
-        alert(`신청이 완료되었습니다, ${name} 원장님!`);
-
-        // 3. 성공 페이지로 이동 (방법 B의 핵심 연결고리)
-        // GitHub 저장소에 success.html이라는 이름으로 파일이 있어야 합니다.
-        window.location.href = "success.html";
+    // 1. 모든 항목이 입력되었는지 확인 (유효성 검사)
+    if (!name || !phone || !dept || !revenue || !interest) {
+        alert('모든 항목을 입력해 주세요.');
+        return;
     }
+
+    // 버튼을 '전송 중' 상태로 변경하여 중복 클릭 방지
+    const btn = document.querySelector('.btn-submit');
+    if (btn) {
+        btn.disabled = true;
+        btn.innerText = "데이터 전송 중...";
+    }
+
+    // 2. 구글 앱스 스크립트 '우체통 주소' 설정
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbx8JPtLlW5XI-OVdRZDt2tsBuD-kefttk33ICTiIl5H7a6l5J6st9QHgI8Lgq0dS8Ht3Q/exec';
+    
+    // 3. 데이터 전송 (Fetch 방식)
+    fetch(scriptURL, {
+        method: 'POST',
+        mode: 'no-cors', // 보안 정책상 no-cors 사용
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams({
+            "name": name,
+            "phone": phone,
+            "dept": dept,
+            "revenue": revenue,
+            "interest": interest
+        })
+    })
+    .then(() => {
+        // 4. 전송 성공 시 성공 페이지로 이동
+        window.location.href = "success.html";
+    })
+    .catch(error => {
+        alert('전송 중 오류가 발생했습니다. 다시 시도해 주세요.');
+        if (btn) {
+            btn.disabled = false;
+            btn.innerText = "무료 경영 진단 신청하기 →";
+        }
+    });
+}
+    
 
     // REMAIN COUNTDOWN
     let remain = 3;
