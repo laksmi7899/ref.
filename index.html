@@ -1549,6 +1549,9 @@
         if (!wasOpen) item.classList.add('open');
     }
 
+    // ── APPS SCRIPT URL (배포 후 여기에 붙여넣기) ──
+    const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyNf6OmQDQ8tI5lryY7o-kOUIrNG-cOmtECixvtgst8opLgC7V5q5riJusZY9d8VZvQKA/exec';
+
     // ── FORM SUBMIT → Google Sheets → success.html ──
     function submitForm() {
         const name     = document.getElementById('fname').value.trim();
@@ -1595,7 +1598,8 @@
             alert('전송 중 오류가 발생했습니다. 잠시 후 다시 시도하거나 카카오톡으로 문의해 주세요.');
         });
     }
-    // REMAIN COUNTDOWN
+
+    // ── REMAIN COUNTER ──
     let remain = 3;
     setInterval(() => {
         if (Math.random() < 0.05 && remain > 1) {
@@ -1603,6 +1607,7 @@
             document.getElementById('formRemain').textContent = remain;
         }
     }, 30000);
+    
 </script>
 </body>
 </html>
