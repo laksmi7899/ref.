@@ -1553,51 +1553,65 @@
     const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyNf6OmQDQ8tI5lryY7o-kOUIrNG-cOmtECixvtgst8opLgC7V5q5riJusZY9d8VZvQKA/exec';
 
     // ── FORM SUBMIT → Google Sheets → success.html ──
-    function submitForm() {
-        const name     = document.getElementById('fname').value.trim();
-        const phone    = document.getElementById('phone').value.trim();
-        const hospital = document.getElementById('hospital').value.trim();
-        const address  = document.getElementById('address').value.trim();
-        const dept     = document.getElementById('dept').value;
-        const revenue  = document.getElementById('revenue').value;
-        const interest = document.getElementById('interest').value;
+    // ── FORM SUBMIT → Google Sheets → success.html ──
+function submitForm() {
+    // 1. ID 값 매칭 수정 (fname -> name)
+    const nameInput     = document.getElementById('name');
+    const phoneInput    = document.getElementById('phone');
+    const hospitalInput = document.getElementById('hospital');
+    const addressInput  = document.getElementById('address');
+    const deptInput     = document.getElementById('dept');
+    const revenueInput  = document.getElementById('revenue');
+    const interestInput = document.getElementById('interest');
 
-        // 필수값 검사
-        if (!name || !phone || !dept || !revenue) {
-            alert('성함, 연락처, 진료과목, 순수익 규모는 필수 입력 항목입니다.');
-            return;
-        }
+    // 값 추출
+    const name     = nameInput ? nameInput.value.trim() : "";
+    const phone    = phoneInput ? phoneInput.value.trim() : "";
+    const hospital = hospitalInput ? hospitalInput.value.trim() : "";
+    const address  = addressInput ? addressInput.value.trim() : "";
+    const dept     = deptInput ? deptInput.value : "";
+    const revenue  = revenueInput ? revenueInput.value : "";
+    const interest = interestInput ? interestInput.value : "";
 
-        // 버튼 로딩 상태
-        const btn = document.getElementById('submitBtn');
+    // 2. 필수값 검사 (논리적 보완)
+    if (!name || !phone || !dept || !revenue) {
+        alert('성함, 연락처, 진료과목, 순수익 규모는 필수 입력 항목입니다.');
+        return;
+    }
+
+    // 3. 버튼 로딩 상태 구현 (id="submitBtn" 존재 확인)
+    const btn = document.getElementById('submitBtn');
+    if (btn) {
         btn.disabled = true;
-        btn.textContent = '제출 중…';
+        btn.textContent = '진단 데이터를 전송 중입니다...';
         btn.style.opacity = '0.7';
+    }
 
-        // FormData → URLSearchParams (Apps Script doPost 호환)
-        const params = new URLSearchParams({
-            name, phone, hospital, address, dept, revenue, interest
-        });
+    // 4. 데이터 전송 (URLSearchParams 사용)
+    const params = new URLSearchParams({
+        name, phone, hospital, address, dept, revenue, interest
+    });
 
-        // no-cors: Apps Script는 CORS 헤더 미지원 → 응답 읽기 불가하지만 데이터는 저장됨
-        fetch(APPS_SCRIPT_URL, {
-            method: 'POST',
-            mode: 'no-cors',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: params.toString()
-        })
-        .then(() => {
-            // 시트 저장 완료 → success.html 이동
-            window.location.href = 'success.html';
-        })
-        .catch((err) => {
-            console.error('전송 오류:', err);
+    fetch(APPS_SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors', // 구글 앱스 스크립트 특성상 필수 설정
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: params.toString()
+    })
+    .then(() => {
+        // 전송 후 success.html로 이동
+        window.location.href = 'success.html';
+    })
+    .catch((err) => {
+        console.error('전송 오류:', err);
+        if (btn) {
             btn.disabled = false;
             btn.textContent = '무료 경영 진단 신청하기 →';
             btn.style.opacity = '1';
-            alert('전송 중 오류가 발생했습니다. 잠시 후 다시 시도하거나 카카오톡으로 문의해 주세요.');
-        });
-    }
+        }
+        alert('네트워크 연결이 원활하지 않습니다. 다시 시도해 주세요.');
+    });
+}
 
     // ── REMAIN COUNTER ──
     let remain = 3;
