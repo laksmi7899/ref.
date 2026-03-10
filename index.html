@@ -1551,26 +1551,44 @@
 
     // FORM 완벽 전송 및 이동 로직
     function submitForm() {
-        const name = document.getElementById('name').value.trim();
-        const phone = document.getElementById('phone').value.trim();
-        const hospital = document.getElementById('hospital').value.trim();
-        const address = document.getElementById('address').value.trim();
-        const dept = document.getElementById('dept').value;
-        const revenue = document.getElementById('revenue').value;
-        const interest = document.getElementById('interest').value;
+    console.log('submitForm 실행됨'); // 콘솔에서 확인용
 
-        // 논리적 검증: 하나라도 비어있으면 경고 메시지 출력
-        if (!name || !phone || !hospital || !address || !dept || !revenue || !interest) {
-            alert('모든 항목을 입력해 주세요.');
-            return;
-        }
-        
-        // 제출 버튼 비활성화 (중복 클릭 방지)
-        const btn = document.querySelector('.btn-submit');
-        if (btn) {
-            btn.disabled = true;
-            btn.innerText = '전송 중입니다...';
-        }
+    const name = document.getElementById('name').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const hospital = document.getElementById('hospital').value.trim();
+    const address = document.getElementById('address').value.trim();
+    const dept = document.getElementById('dept').value;
+    const revenue = document.getElementById('revenue').value;
+    const interest = document.getElementById('interest').value;
+
+    if (!name || !phone || !hospital || !address || !dept || !revenue || !interest) {
+        alert('모든 항목을 입력해 주세요.');
+        return;
+    }
+
+    const btn = document.querySelector('.btn-submit');
+    btn.disabled = true;
+    btn.innerText = '전송 중입니다...';
+
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbwmJn_cQXSyD8JauoYoyntvLpgG1rmWllo6-fngIH38giZZkmqqe7AQsrO_KvUAWwJAEA/exec';
+
+    fetch(scriptURL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams({ name, phone, hospital, address, dept, revenue, interest })
+    })
+    .then(() => {
+        // success.html 대신 같은 페이지에서 완료 메시지 표시
+        alert(`신청 완료, ${name} 원장님!\n24시간 내 담당자가 연락드립니다.`);
+        btn.innerText = '✅ 신청 완료';
+    })
+    .catch(() => {
+        alert('오류가 발생했습니다. 다시 시도해 주세요.');
+        btn.disabled = false;
+        btn.innerText = '무료 경영 진단 신청하기 →';
+    });
+}
 
         // 구글 앱스 스크립트 연결 주소 (기존 사용하시던 웹앱 URL)
         const scriptURL = 'https://script.google.com/macros/s/AKfycbyNf6OmQDQ8tI5lryY7o-kOUIrNG-cOmtECixvtgst8opLgC7V5q5riJusZY9d8VZvQKA/exec;
