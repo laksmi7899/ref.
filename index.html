@@ -1549,61 +1549,52 @@
         if (!wasOpen) item.classList.add('open');
     }
 
-    // 폼 전송 및 페이지 이동 통합 함수
+    // ── FORM SUBMIT → Google Sheets → success.html ──
     function submitForm() {
-        // 1. 입력값 변수 할당 및 유효성 검사
-        const name = document.getElementById('name').value.trim();
-        const phone = document.getElementById('phone').value.trim();
+        const name     = document.getElementById('fname').value.trim();
+        const phone    = document.getElementById('phone').value.trim();
         const hospital = document.getElementById('hospital').value.trim();
-        const address = document.getElementById('address').value.trim();
-        const dept = document.getElementById('dept').value;
-        const revenue = document.getElementById('revenue').value;
+        const address  = document.getElementById('address').value.trim();
+        const dept     = document.getElementById('dept').value;
+        const revenue  = document.getElementById('revenue').value;
         const interest = document.getElementById('interest').value;
-    
-        // 모든 항목 필수 입력 체크 (논리적 완결성 확보)
-        if (!name || !phone || !hospital || !address || !dept || !revenue || !interest) {
-            alert('신청서의 모든 항목을 정확히 입력해 주셔야 진단이 가능합니다.');
+
+        // 필수값 검사
+        if (!name || !phone || !dept || !revenue) {
+            alert('성함, 연락처, 진료과목, 순수익 규모는 필수 입력 항목입니다.');
             return;
         }
-    
-        // 2. 전송 버튼 상태 변경 (중복 클릭 방지 및 시각적 피드백)
-        const btn = document.querySelector('.btn-submit');
-        const originalText = btn.innerText;
+
+        // 버튼 로딩 상태
+        const btn = document.getElementById('submitBtn');
         btn.disabled = true;
-        btn.innerText = '진단 데이터를 전송 중입니다...';
-    
-        // 3. 구글 앱스 스크립트 웹앱 URL (사용 중인 정확한 URL을 입력하세요)
-        // 주의: 아래 URL 끝에 세미콜론(;)이나 따옴표(')가 정확히 닫혀야 합니다.
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbwmJn_cQXSyD8JauoYoyntvLpgG1rmWllo6-fngIH38giZZkmqqe7AQsrO_KvUAWwJAEA/exec';
-    
-        // 4. 데이터 전송 (Fetch API 사용)
-        fetch(scriptURL, {
+        btn.textContent = '제출 중…';
+        btn.style.opacity = '0.7';
+
+        // FormData → URLSearchParams (Apps Script doPost 호환)
+        const params = new URLSearchParams({
+            name, phone, hospital, address, dept, revenue, interest
+        });
+
+        // no-cors: Apps Script는 CORS 헤더 미지원 → 응답 읽기 불가하지만 데이터는 저장됨
+        fetch(APPS_SCRIPT_URL, {
             method: 'POST',
-            mode: 'no-cors', // 구글 스크립트의 CORS 제한 우회
+            mode: 'no-cors',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: new URLSearchParams({
-                name: name,
-                phone: phone,
-                hospital: hospital,
-                address: address,
-                dept: dept,
-                revenue: revenue,
-                interest: interest
-            })
+            body: params.toString()
         })
         .then(() => {
-            // 5. 전송 성공 시 success.html로 이동 (깃허브 경로)
-            // 같은 폴더 내에 있으므로 파일명만 기입합니다.
+            // 시트 저장 완료 → success.html 이동
             window.location.href = 'success.html';
         })
-        .catch(error => {
-            console.error('Error!', error.message);
-            alert('네트워크 연결이 불안정하여 전송에 실패했습니다. 다시 시도해 주세요.');
+        .catch((err) => {
+            console.error('전송 오류:', err);
             btn.disabled = false;
-            btn.innerText = originalText;
+            btn.textContent = '무료 경영 진단 신청하기 →';
+            btn.style.opacity = '1';
+            alert('전송 중 오류가 발생했습니다. 잠시 후 다시 시도하거나 카카오톡으로 문의해 주세요.');
         });
     }
-
     // REMAIN COUNTDOWN
     let remain = 3;
     setInterval(() => {
